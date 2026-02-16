@@ -1,3 +1,6 @@
 from django.contrib import admin
+from servicos.models import ServicoExecutado
 
-# Register your models here.
+class ServicoExecutadoInline(admin.TabularInline):
+    model = ServicoExecutado
+    extra = 1

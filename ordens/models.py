@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models, transaction
+from django.db.models import Sum
 from clientes.models import Cliente
 from django.utils import timezone
 
@@ -128,7 +129,6 @@ class OrdemServico(models.Model):
                     .order_by("-id")
                     .first()
                 )
-
                 proximo_numero = 1 if not ultimo else ultimo.id + 1
                 self.numero_os = f"OS-{proximo_numero:06d}"
 
@@ -142,7 +142,8 @@ class OrdemServico(models.Model):
 
     @property
     def valor_total(self):
-        return sum(servico.valor for servico in self.servicos_executados.all())
+        total = self.servicos_executados.aggregate(soma=Sum('valor'))['soma']
+        return total or 0
 
     def __str__(self) -> str:
         return f'OS {self.numero_os} - {self.cliente.nome}'

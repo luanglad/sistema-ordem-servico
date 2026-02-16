@@ -27,4 +27,4 @@ class ServicoExecutado(models.Model):
         verbose_name_plural = 'Serviços Executados'
 
     def __str__(self):
-        return f'{self.ordem_servico.numero_os} - R${self.valor}'
+        return f' OS {self.ordem_servico.numero_os} - R${self.valor}'
