@@ -3,12 +3,15 @@ from ordens.models import OrdemServico
 
 @admin.register(OrdemServico)
 class OrdemServicoAdmin(admin.ModelAdmin):
-    list_display = ('numero_os', 'cliente', 'nome_equipamento', 'status', 'valor_orcamento', 'data_inicio', 'data_finalizacao')
+    list_display = ('numero_os', 'cliente', 'equipamento', 'status', 'valor_orcamento', 'data_inicio', 'data_finalizacao')
     search_fields = (
         'numero_os',
         'cliente__nome',
         'cliente__telefone',
         'cliente__documento',
+        'equipamento__nome',
+        'equipamento__numero_serie',
+        'equipamento__modelo',
     )
     list_filter = ('status', 'data_inicio', 'data_entrega',)
     ordering = ('-data_inicio',)
@@ -21,11 +24,7 @@ class OrdemServicoAdmin(admin.ModelAdmin):
             'fields': ('cliente',)
         }),
         ('Equipamento', {
-            'fields': (
-                'nome_equipamento',
-                'modelo_equipamento',
-                'numero_serie',
-            )
+            'fields': ('equipamento',)
         }),
         ('Serviço', {
             'fields': ('defeito', 'observacoes')

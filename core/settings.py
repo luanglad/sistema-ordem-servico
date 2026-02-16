@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     
     'clientes.apps.ClientesConfig',
     'ordens.apps.OrdensConfig',
-    'usuarios.apps.UsuariosConfig',
     'servicos.apps.ServicosConfig',
 ]
 

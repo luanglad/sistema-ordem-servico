@@ -10,6 +10,39 @@ class StatusOrdemServico(models.TextChoices):
     FINALIZADO = 'FINAL', 'Finalizado'
     ENTREGUE = 'ENTREG', 'Entregue'
 
+class Equipamento(models.Model):
+    cliente = models.ForeignKey(
+        Cliente,
+        on_delete=models.CASCADE,
+        related_name='equipamentos'
+    )
+
+    nome = models.CharField(
+        max_length=100,
+        help_text='Ex: Xbox Series X'
+    )
+
+    modelo = models.CharField(
+        max_length=100,
+        blank=True
+    )
+
+    numero_serie = models.CharField(
+        max_length=100,
+        unique=True
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = 'Equipamento'
+        verbose_name_plural = 'Equipamentos'
+
+    def __str__(self):
+        return f'{self.nome} - {self.numero_serie}'
+
 class OrdemServico(models.Model):
     numero_os = models.CharField(
         max_length=20,
@@ -24,24 +57,10 @@ class OrdemServico(models.Model):
         related_name='ordens_servico'
     )
 
-    nome_equipamento = models.CharField(
-        max_length=100,
-        null=True,
-        blank=True,
-        help_text='Ex: Playstation 5, Xbox Series X'
-    )
-
-    modelo_equipamento = models.CharField(
-        max_length=100,
-        null=True,
-        blank=True,
-        help_text='Modelo ou versão do equipamento'
-    )
-
-    numero_serie = models.CharField(
-        max_length=100,
-        null=True,
-        blank=True,
+    equipamento = models.ForeignKey(
+        Equipamento,
+        on_delete=models.CASCADE,
+        related_name='ordens_servico'
     )
 
     defeito = models.TextField(
@@ -89,11 +108,14 @@ class OrdemServico(models.Model):
     )
 
     def clean(self):
-        if self.status == StatusOrdemServico.FINALIZADO and not self.valor_orcamento:
-            raise ValidationError('Não é possível finalizar a OS sem definir o valor do orçamento.')
-        
+        if self.status == StatusOrdemServico.FINALIZADO and not self.servicos_executados.exists():
+            raise ValidationError('Não é possível finalizar a OS sem serviços registrados.')
+
         if self.status == StatusOrdemServico.ENTREGUE and self.data_finalizacao is None:
             raise ValidationError('Não é possível entregar a OS sem finalizá-la.')
+        
+        if self.equipamento.cliente != self.cliente:
+            raise ValidationError('O equipamento não pertence ao cliente selecionado.')
 
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -118,5 +140,10 @@ class OrdemServico(models.Model):
 
         super().save(*args, **kwargs)
 
+    @property
+    def valor_total(self):
+        return sum(servico.valor for servico in self.servicos_executados.all())
+
     def __str__(self) -> str:
         return f'OS {self.numero_os} - {self.cliente.nome}'
+    
