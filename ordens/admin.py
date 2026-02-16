@@ -1,3 +1,4 @@
+import nested_admin
 from django.contrib import admin
 from ordens.models import OrdemServico, Equipamento
 from servicos.admin import ServicoExecutadoInline
@@ -9,7 +10,7 @@ class OrdemServicoInline(admin.TabularInline):
     show_change_link = True
 
 @admin.register(OrdemServico)
-class OrdemServicoAdmin(admin.ModelAdmin):
+class OrdemServicoAdmin(nested_admin.NestedModelAdmin):
     list_display = ('numero_os', 'cliente', 'equipamento', 'status', 'valor_orcamento_formatado', 'valor_total_formatado', 'data_inicio', 'data_finalizacao')
     search_fields = (
         'numero_os',

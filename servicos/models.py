@@ -28,3 +28,15 @@ class ServicoExecutado(models.Model):
 
     def __str__(self):
         return f' OS {self.ordem_servico.numero_os} - R${self.valor}'
+    
+class FotoServico(models.Model):
+    servico = models.ForeignKey(
+        'ServicoExecutado',
+        on_delete=models.CASCADE,
+        related_name='fotos'
+    )
+    imagem = models.ImageField(upload_to='fotos_servicos/')
+    descricao = models.CharField(max_length=200, blank=True)
+
+    def __str__(self):
+        return f"Foto - {self.servico.descricao}"
