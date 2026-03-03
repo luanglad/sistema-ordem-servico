@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+
+<style>
+
+@page {
+    size: A4;
+    margin: 18mm;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #222;
+}
+
+/* MARCA D'ÁGUA */
+.watermark {
+    position: fixed;
+    top: 25%;
+    left: 10%;
+    width: 80%;
+    opacity: 0.04;
+    z-index: -1;
+}
+
+/* CABEÇALHO */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header img {
+    height: 100px;
+}
+
+.empresa-info {
+    text-align: right;
+    font-size: 12px;
+}
+
+/* TÍTULO */
+.titulo-os {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0d2c6c;
+    margin: 15px 0;
+}
+
+/* SEÇÕES */
+.section {
+    margin-bottom: 18px;
+}
+
+.section-title {
+    background: #0d2c6c;
+    color: white;
+    padding: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+/* TABELA */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+
+table th {
+    background: #0d2c6c;
+    color: white;
+    padding: 6px;
+    font-size: 11px;
+}
+
+table td {
+    border: 1px solid #ddd;
+    padding: 6px;
+    font-size: 11px;
+}
+
+.total {
+    text-align: right;
+    font-size: 15px;
+    font-weight: bold;
+    color: #0d2c6c;
+    margin-top: 8px;
+}
+
+/* GRID IMAGENS */
+.grid-imagens {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.grid-imagens img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.foto-box {
+    text-align: center;
+    font-size: 10px;
+}
+
+.legenda {
+    margin-top: 4px;
+    font-size: 9px;
+    color: #444;
+}
+
+/* GARANTIA */
+.garantia {
+    margin-top: 25px;
+    font-size: 11px;
+    background: #f4f6fb;
+    padding: 10px;
+    border-left: 4px solid #0d2c6c;
+}
+
+/* ASSINATURAS */
+.assinaturas {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.assinatura-box {
+    width: 45%;
+    text-align: center;
+}
+
+.linha {
+    margin-top: 50px;
+    border-top: 1px solid #000;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MARCA D'ÁGUA -->
+<img src="{{ logo_principal_path }}" class="watermark">
+
+<!-- CABEÇALHO -->
+<div class="header">
+    <img src="{{ logo_horizontal_path }}">
+    <div class="empresa-info">
+        <strong>CP TECH Assistência Técnica</strong><br>
+        CNPJ: 00.000.000/0001-00<br>
+        Telefone: (14) 99882-9447
+    </div>
+</div>
+
+<div class="titulo-os">
+    ORDEM DE SERVIÇO Nº {{ os.numero_os }}
+</div>
+
+<!-- CLIENTE -->
+<div class="section">
+    <div class="section-title">DADOS DO CLIENTE</div>
+    Nome: {{ os.cliente.nome }} <br>
+    Telefone: {{ os.cliente.telefone }} <br>
+</div>
+
+<!-- EQUIPAMENTO -->
+<div class="section">
+    <div class="section-title">DADOS DO EQUIPAMENTO</div>
+    Equipamento: {{ os.equipamento }} <br>
+    Marca: {{ os.marca }} <br>
+    Modelo: {{ os.modelo }} <br>
+    Defeito Relatado: {{ os.defeito }}
+</div>
+
+<!-- DATAS -->
+<div class="section">
+    <div class="section-title">DATAS</div>
+    Abertura: {{ os.data_inicio|date:"d/m/Y H:i" }} <br>
+    Finalização: {{ os.data_finalizacao|date:"d/m/Y H:i" }} <br>
+    Entrega: {{ os.data_entrega|date:"d/m/Y H:i" }}
+</div>
+
+<!-- SERVIÇOS -->
+<div class="section">
+    <div class="section-title">SERVIÇOS EXECUTADOS</div>
+
+    {% if os.servicos_executados.all %}
+    <table>
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for servico in os.servicos_executados.all %}
+            <tr>
+                <td>{{ servico.descricao }}</td>
+                <td>R$ {{ servico.valor }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Nenhum serviço cadastrado.</p>
+    {% endif %}
+
+    <div class="total">
+        TOTAL: R$ {{ os.valor_total }}
+    </div>
+</div>
+
+<!-- IMAGENS POR SERVIÇO -->
+{% for servico in os.servicos_executados.all %}
+    {% if servico.fotos.all %}
+    <div class="grid-imagens">
+        {% for foto in servico.fotos.all %}
+            <div class="foto-box">
+                <img src="{{ request.scheme }}://{{ request.get_host }}{{ foto.imagem.url }}">
+                
+                {% if foto.descricao %}
+                    <div class="legenda">
+                        {{ foto.descricao }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endfor %}
+
+<!-- GARANTIA -->
+<div class="garantia">
+    <strong>TERMO DE GARANTIA</strong><br><br>
+    Garantia de 90 dias para os serviços executados,
+    válida a partir da data de entrega do equipamento.
+    A garantia não cobre mau uso, quedas, oxidação 
+    ou danos causados por terceiros.
+</div>
+
+<!-- ASSINATURAS -->
+<div class="assinaturas">
+    <div class="assinatura-box">
+        <div class="linha"></div>
+        Técnico Responsável
+    </div>
+
+    <div class="assinatura-box">
+        <div class="linha"></div>
+        Assinatura do Cliente
+    </div>
+</div>
+
+</body>
+</html>

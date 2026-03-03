@@ -130,7 +130,7 @@ class OrdemServico(models.Model):
                     .first()
                 )
                 proximo_numero = 1 if not ultimo else ultimo.id + 1
-                self.numero_os = f"OS-{proximo_numero:06d}"
+                self.numero_os = f"{proximo_numero:06d}"
 
         if (self.status == StatusOrdemServico.FINALIZADO and self.data_finalizacao is None):
             self.data_finalizacao = timezone.now()
