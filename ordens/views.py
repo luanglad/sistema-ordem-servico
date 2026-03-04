@@ -28,7 +28,7 @@ def gerar_pdf_os(request, pk):
     )
 
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = f'inline; filename=os_{os_obj.id}.pdf'
+    response['Content-Disposition'] = f'inline; filename=os_{os_obj.numero_os}.pdf'
 
     HTML(
         string=html_string,

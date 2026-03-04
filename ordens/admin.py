@@ -1,7 +1,10 @@
-import nested_admin
-from django.contrib import admin
-from ordens.models import OrdemServico, Equipamento
+from ordens.models import OrdemServico, StatusOrdemServico, Equipamento
 from servicos.admin import ServicoExecutadoInline
+from django.utils.html import format_html
+from django.contrib import messages
+from django.contrib import admin
+from django.urls import reverse
+import nested_admin
 
 class OrdemServicoInline(admin.TabularInline):
     model = OrdemServico
@@ -11,7 +14,7 @@ class OrdemServicoInline(admin.TabularInline):
 
 @admin.register(OrdemServico)
 class OrdemServicoAdmin(nested_admin.NestedModelAdmin):
-    list_display = ('numero_os', 'cliente', 'equipamento', 'status', 'valor_orcamento_formatado', 'valor_total_formatado', 'data_inicio', 'data_finalizacao')
+    list_display = ('numero_os', 'cliente', 'equipamento', 'status', 'valor_orcamento_formatado', 'valor_total_formatado', 'data_inicio', 'data_finalizacao', 'botao_pdf',)
     search_fields = (
         'numero_os',
         'cliente__nome',
@@ -59,7 +62,20 @@ class OrdemServicoAdmin(nested_admin.NestedModelAdmin):
     @admin.display(description='Total Serviços')
     def valor_total_formatado(self, obj):
         return f'R$ {obj.valor_total:.2f}'
-
+    
+    @admin.display(description='PDF')
+    def botao_pdf(self, obj):
+        if obj.status in [StatusOrdemServico.ENTREGUE, StatusOrdemServico.FINALIZADO]:
+            url = reverse('gerar_pdf_os', args=[obj.pk])
+            return format_html(
+                '<a target="_blank" '
+                'style="padding:4px 8px;background:#0d2c6c;color:white;border-radius:4px;text-decoration:none;" '
+                'href="{}">PDF</a>',
+                url
+            )
+        return format_html(
+            '<span style="color:gray;">Indisponível</span>'
+        )
 
 @admin.register(Equipamento)
 class EquipamentoAdmin(admin.ModelAdmin):

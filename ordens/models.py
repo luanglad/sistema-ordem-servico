@@ -42,7 +42,7 @@ class Equipamento(models.Model):
         verbose_name_plural = 'Equipamentos'
 
     def __str__(self):
-        return f'{self.nome} - {self.numero_serie}'
+        return f'{self.nome}'
 
 class OrdemServico(models.Model):
     numero_os = models.CharField(
