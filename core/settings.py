@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'ordens.context_processors.empresa_info',
             ],
         },
     },
@@ -138,3 +139,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Company information
+CNPJ = os.getenv("CNPJ")
+TELEFONE = os.getenv("TELEFONE")
+NOME_EMPRESA = os.getenv("NOME_EMPRESA")
+
+print("SECRET_KEY:", SECRET_KEY)

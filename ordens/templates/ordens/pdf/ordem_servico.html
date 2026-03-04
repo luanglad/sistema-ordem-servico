@@ -158,9 +158,9 @@ table td {
 <div class="header">
     <img src="{{ logo_horizontal_path }}">
     <div class="empresa-info">
-        <strong>CP TECH Assistência Técnica</strong><br>
-        CNPJ: 00.000.000/0001-00<br>
-        Telefone: (14) 99882-9447
+        <strong>{{ context.NOME_EMPRESA }}</strong><br>
+        CNPJ: {{ context.CNPJ }}<br>
+        Telefone: {{ context.TELEFONE }}
     </div>
 </div>
 

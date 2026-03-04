@@ -6,6 +6,12 @@ from django.conf import settings
 from weasyprint import HTML
 from pathlib import Path
 
+context = {
+    "NOME_EMPRESA": settings.NOME_EMPRESA,
+    "CNPJ": settings.CNPJ,
+    "TELEFONE": settings.TELEFONE,
+}
+
 def gerar_pdf_os(request, pk):
     os_obj = get_object_or_404(OrdemServico, pk=pk)
 
@@ -24,6 +30,7 @@ def gerar_pdf_os(request, pk):
             'logo_horizontal_path': logo_horizontal_path,
             'logo_principal_path': logo_principal_path,
             'request': request,
+            'context': context,
         }
     )
 
