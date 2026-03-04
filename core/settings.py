@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,7 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'ordens.context_processors.empresa_info',
+                'core.context_processors.empresa_info',
             ],
         },
     },
@@ -145,4 +146,39 @@ CNPJ = os.getenv("CNPJ")
 TELEFONE = os.getenv("TELEFONE")
 NOME_EMPRESA = os.getenv("NOME_EMPRESA")
 
-print("SECRET_KEY:", SECRET_KEY)
+# Jazzmin settings
+JAZZMIN_SETTINGS = {
+    "site_title": "Sistema Ordem de Serviço",
+    "site_header": "Sistema Ordem de Serviço",
+    "site_brand": "OS Admin",
+    "site_logo": "img/logo_principal.png",  
+    "login_logo": "img/logo_principal.png", 
+    "site_logo_classes": "img-circle elevation-3",  
+    "welcome_sign": "Bem-vindo ao Sistema",
+
+    "topmenu_links": [
+        {"name": "Início", "url": "admin:index"},
+    ],
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+
+    "theme": "flatly",  
+
+    "hide_apps": ["auth"],
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "flatly",
+    "navbar": "navbar-primary navbar-dark",
+    "brand_colour": "navbar-primary",
+    "accent": "accent-primary",
+    "button_classes": {
+        "primary": "btn-primary",     
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",     
+        "danger": "btn-danger",       
+        "success": "btn-success",     
+    }
+}
