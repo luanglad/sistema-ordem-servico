@@ -14,15 +14,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
 from django.conf.urls.static import static
+from django.shortcuts import redirect
+from django.urls import path, include   
+from django.contrib import admin
+from django.conf import settings
+
+def redirect_admin(request):
+    return redirect('/admin/')
 
 urlpatterns = [
     path('_nested_admin/', include('nested_admin.urls')),
     path('admin/', admin.site.urls),
-    path('', include('ordens.urls')),  
+    path('', redirect_admin),  
+    path('ordens/', include('ordens.urls'))
 ] 
 
 if settings.DEBUG:
