@@ -48,7 +48,7 @@ O projeto também foi expandido com funcionalidades adicionais além das apresen
 
 GitHub
 
-# Principais Funcionalidades
+# ⚙️ Principais Funcionalidades
 
 👤 Cadastro de clientes
 
@@ -104,51 +104,54 @@ PDF da Ordem de Serviço
 
 sistema-ordem-servico/
 │
-├── clientes/        # App responsável pelo cadastro de clientes
-├── servicos/        # App responsável pelos serviços realizados na assistência
-├── ordens/          # App responsável pelas ordens de serviço
+├── clientes/                  # App responsável pelo cadastro de clientes
 │
-├── core/            # Configurações principais do projeto Django
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
+├── servicos/                  # Tipos de serviços realizados
+│  
 │
-├── static/          # Arquivos estáticos (logos)
+├── ordens/                    # Gerenciamento das ordens de serviço
+│                               
 │
-├── manage.py
-└── requirements.txt
+├── core/                      # Configurações principais do projeto Django
+│   ├── settings.py            # Configurações do projeto
+│   ├── urls.py                # Rotas principais
+│   └── wsgi.py                # Configuração de deploy
+│
+├── static/                    # Arquivos estáticos (CSS, imagens, logos)
+│
+├── manage.py                  # Script principal do Django
+│
+└── requirements.txt           # Dependências do projeto
 
 Observação: arquivos enviados pelos usuários são armazenados na pasta `media/`, que não está incluída no repositório por estar listada no `.gitignore`.
 
-# 🚀 Como Executar o Projeto
+# ▶️ Como Executar
 
-1️⃣ Clonar o repositório
+1. Clone o repositório
 git clone https://github.com/luanglad/sistema-ordem-servico.git
-
-2️⃣ Entrar na pasta do projeto
 cd sistema-ordem-servico
 
-3️⃣ Criar ambiente virtual
+2. Crie um ambiente virtual
 python -m venv venv
 
-4️⃣ Ativar ambiente virtual
+3. Ative o ambiente virtual
 
-Windows
+Windows:
 venv\Scripts\activate
 
-Linux / Mac
+Linux / Mac:
 source venv/bin/activate
 
-5️⃣ Instalar dependências
+4. Instale as dependências
 pip install -r requirements.txt
 
-6️⃣ Rodar migrações
+5. Execute as migrações
 python manage.py migrate
 
-7️⃣ Iniciar o servidor
+6. Inicie o servidor
 python manage.py runserver
 
-Acesse no navegador:
+7. Acesse o sistema
 http://127.0.0.1:8000
 
 # 🔒 Observações
