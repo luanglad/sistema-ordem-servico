@@ -86,21 +86,13 @@ O projeto também foi expandido com funcionalidades adicionais além das apresen
 
 # 📷 Screenshots do Sistema
 Dashboard / Visão geral
-
-
-
+![Dashboard](media/fotos_repositorio/foto_dashboard.png)
 
 Lista de Ordens de Serviço
-
-
-
-
-Cadastro de Ordem de Serviço
-
-
-
+![Ordens](media/fotos_repositorio/foto_os.png)
 
 PDF da Ordem de Serviço
+![PDF](media/fotos_repositorio/foto_pdf.png)
 
 # 🗂️ Estrutura do Projeto
 
