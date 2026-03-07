@@ -151,8 +151,8 @@ JAZZMIN_SETTINGS = {
     "site_title": "Sistema Ordem de Serviço",
     "site_header": "Sistema Ordem de Serviço",
     "site_brand": "OS Admin",
-    "site_logo": "img/logo_principal.png",  
-    "login_logo": "img/logo_principal.png", 
+    "site_logo": "{{ logo_principal_path }}",  
+    "login_logo": "{{ logo_principal_path }}", 
     "site_logo_classes": "img-circle elevation-3",  
     "welcome_sign": "Bem-vindo ao Sistema",
 
