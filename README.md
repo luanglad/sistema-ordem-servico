@@ -85,15 +85,15 @@ O projeto também foi expandido com funcionalidades adicionais além das apresen
 🐙 GitHub
 
 # 📷 Screenshots do Sistema
-Dashboard / Visão geral
+- Dashboard / Visão geral
 
 ![Dashboard](static/fotos_repositorio/foto_dashboard.png)
 
-Lista de Ordens de Serviço
+- Lista de Ordens de Serviço
 
 ![Ordens](static/fotos_repositorio/foto_os.png)
 
-PDF da Ordem de Serviço
+- PDF da Ordem de Serviço
 
 ![PDF](static/fotos_repositorio/foto_pdf.png)
 
