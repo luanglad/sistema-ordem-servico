@@ -151,11 +151,15 @@ pip install -r requirements.txt
 ```bash
 python manage.py migrate
 ```
-6. Inicie o servidor
+6. Criar usuário admin
+```bash
+python manage.py createsuperuser
+```
+7. Inicie o servidor
 ```bash
 python manage.py runserver
 ```
-7. Acesse o sistema
+8. Acesse o sistema
 ```bash
 http://127.0.0.1:8000
 ```
