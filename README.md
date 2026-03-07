@@ -129,32 +129,40 @@ sistema-ordem-servico/
 Observação: arquivos enviados pelos usuários são armazenados na pasta `media/`, que não está incluída no repositório por estar listada no `.gitignore`.
 
 # ▶️ Como Executar
-```bash
+
 1. Clone o repositório
+```bash
 git clone https://github.com/luanglad/sistema-ordem-servico.git
 cd sistema-ordem-servico
-
+```
 2. Crie um ambiente virtual
+```bash
 python -m venv venv
-
+```
 3. Ative o ambiente virtual
-
+```
 Windows:
+```bash
 venv\Scripts\activate
-
+```
 Linux / Mac:
+```bash
 source venv/bin/activate
-
+```
 4. Instale as dependências
+```bash
 pip install -r requirements.txt
-
+```
 5. Execute as migrações
+```bash
 python manage.py migrate
-
+```
 6. Inicie o servidor
+```bash
 python manage.py runserver
-
+```
 7. Acesse o sistema
+```bash
 http://127.0.0.1:8000
 ```
 # 🔒 Observações
