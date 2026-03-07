@@ -1,10 +1,10 @@
-🎮 Sistema de Ordem de Serviço
+# 🎮 Sistema de Ordem de Serviço
 
 Sistema web desenvolvido para gestão de ordens de serviço em uma assistência técnica de videogames, permitindo o controle de clientes, equipamentos, diagnósticos e status de manutenção.
 
 Este projeto foi criado como projeto pessoal com uso real, aplicado em uma assistência técnica, e desenvolvido a partir dos conhecimentos adquiridos durante meus estudos na formação Django: crie aplicações em Python, da plataforma Alura.
 
-🎯 Objetivo do Projeto
+# 🎯 Objetivo do Projeto
 
 O sistema foi desenvolvido com o objetivo de digitalizar e organizar o fluxo de trabalho de uma assistência técnica, substituindo controles manuais por um sistema centralizado.
 
@@ -24,7 +24,7 @@ Com ele é possível:
 
 Além do uso prático, o projeto também foi desenvolvido com foco em aprendizado de desenvolvimento back-end e construção de portfólio profissional.
 
-🧠 Base de Estudos
+# 🧠 Base de Estudos
 
 Este projeto foi desenvolvido com base nos conhecimentos adquiridos na formação:
 
@@ -46,32 +46,9 @@ Organização de aplicações web em Python
 
 O projeto também foi expandido com funcionalidades adicionais além das apresentadas na formação, como geração de PDF e regras de negócio específicas para ordens de serviço.
 
-🛠 Tecnologias Utilizadas
-Back-end
-
-🐍 Python
-
-🌐 Django
-
-Banco de Dados
-
-🗄 SQLite
-
-Front-end
-
-HTML
-
-CSS
-
-Django Templates
-
-Controle de Versão
-
-Git
-
 GitHub
 
-Principais Funcionalidades
+# Principais Funcionalidades
 
 👤 Cadastro de clientes
 
@@ -89,7 +66,7 @@ Principais Funcionalidades
 
 🏢 Estrutura preparada para uso em ambiente real
 
-💻 Tecnologias Utilizadas
+# 💻 Tecnologias Utilizadas
 
 🐍 Python 3.11
 
@@ -105,7 +82,7 @@ Principais Funcionalidades
 
 🔐 Python Dotenv
 
-📷 Screenshots do Sistema
+# 📷 Screenshots do Sistema
 Dashboard / Visão geral
 
 
@@ -123,7 +100,7 @@ Cadastro de Ordem de Serviço
 
 PDF da Ordem de Serviço
 
-🗂️ Estrutura do Projeto
+# 🗂️ Estrutura do Projeto
 
 sistema-ordem-servico/
 │
@@ -143,7 +120,7 @@ sistema-ordem-servico/
 
 Observação: arquivos enviados pelos usuários são armazenados na pasta `media/`, que não está incluída no repositório por estar listada no `.gitignore`.
 
-🚀 Como Executar o Projeto
+# 🚀 Como Executar o Projeto
 
 1️⃣ Clonar o repositório
 git clone https://github.com/luanglad/sistema-ordem-servico.git
@@ -172,10 +149,9 @@ python manage.py migrate
 python manage.py runserver
 
 Acesse no navegador:
-
 http://127.0.0.1:8000
 
-🔒 Observações
+# 🔒 Observações
 
 Para preservar a privacidade do ambiente real onde o sistema foi utilizado:
 
@@ -185,7 +161,7 @@ Arquivos sensíveis foram removidos
 
 Variáveis de ambiente não estão incluídas no repositório
 
-👨‍💻 Autor
+# 👨‍💻 Autor
 
 Luan Glad
 
