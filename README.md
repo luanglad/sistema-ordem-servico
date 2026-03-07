@@ -140,12 +140,11 @@ cd sistema-ordem-servico
 python -m venv venv
 ```
 3. Ative o ambiente virtual
-```
-Windows:
+    Windows:
 ```bash
 venv\Scripts\activate
 ```
-Linux / Mac:
+    Linux / Mac:
 ```bash
 source venv/bin/activate
 ```
