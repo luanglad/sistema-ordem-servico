@@ -46,8 +46,6 @@ Organização de aplicações web em Python
 
 O projeto também foi expandido com funcionalidades adicionais além das apresentadas na formação, como geração de PDF e regras de negócio específicas para ordens de serviço.
 
-GitHub
-
 # ⚙️ Principais Funcionalidades
 
 👤 Cadastro de clientes
@@ -82,6 +80,10 @@ GitHub
 
 🔐 Python Dotenv
 
+🐙 Git 
+
+🐙 GitHub
+
 # 📷 Screenshots do Sistema
 Dashboard / Visão geral
 
@@ -102,6 +104,7 @@ PDF da Ordem de Serviço
 
 # 🗂️ Estrutura do Projeto
 
+```text
 sistema-ordem-servico/
 │
 ├── clientes/                  # App responsável pelo cadastro de clientes
@@ -122,11 +125,11 @@ sistema-ordem-servico/
 ├── manage.py                  # Script principal do Django
 │
 └── requirements.txt           # Dependências do projeto
-
+``` 
 Observação: arquivos enviados pelos usuários são armazenados na pasta `media/`, que não está incluída no repositório por estar listada no `.gitignore`.
 
 # ▶️ Como Executar
-
+```bash
 1. Clone o repositório
 git clone https://github.com/luanglad/sistema-ordem-servico.git
 cd sistema-ordem-servico
@@ -153,7 +156,7 @@ python manage.py runserver
 
 7. Acesse o sistema
 http://127.0.0.1:8000
-
+```
 # 🔒 Observações
 
 Para preservar a privacidade do ambiente real onde o sistema foi utilizado:
