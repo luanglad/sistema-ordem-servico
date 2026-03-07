@@ -130,15 +130,11 @@ Observação: arquivos enviados pelos usuários são armazenados na pasta `media
 git clone https://github.com/luanglad/sistema-ordem-servico.git
 cd sistema-ordem-servico
 ```
-2. Criar .env na raiz do projeto e SECRET_KEY (ver arquivo .env.example)
-```bash
-python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
-```
-3. Crie um ambiente virtual
+2. Crie um ambiente virtual
 ```bash
 python -m venv venv
 ```
-4. Ative o ambiente virtual
+3. Ative o ambiente virtual
 - Windows:
 ```bash
 venv\Scripts\activate
@@ -147,9 +143,13 @@ venv\Scripts\activate
 ```bash
 source venv/bin/activate
 ```
-5. Instale as dependências
+4. Instale as dependências
 ```bash
 pip install -r requirements.txt
+```
+5. Criar .env na raiz do projeto e SECRET_KEY (ver arquivo .env.example)
+```bash
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 ```
 6. Execute as migrações
 ```bash
